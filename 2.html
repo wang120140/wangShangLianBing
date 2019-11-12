@@ -1,0 +1,595 @@
+<html><head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <title>陕钢网上练兵</title>
+        <link type="text/css" rel="stylesheet" href="http://1.85.1.34:8023/css/public_css.css?v">
+        <link type="text/css" rel="stylesheet" href="http://1.85.1.34:8023/css/css.css">
+        <link type="text/css" rel="stylesheet" href="http://1.85.1.34:8023/css/sub_page.css?v=12345">
+        <link type="text/css" rel="stylesheet" href="http://1.85.1.34:8023/css/per_center.css">
+        <link rel="stylesheet" href="http://1.85.1.34:8023/fonts/font-awesome.min.css">
+        <link rel="stylesheet" href="http://1.85.1.34:8023/layui/css/layui.css">
+        <!--[if lt IE 9]>
+        <script src="/js/html5shiv.min.js"></script>
+        <script src="/js/respond.min.js"></script>
+        <![endif]-->
+        <script src="//hm.baidu.com/hm.js?eaa57ca47dacb4ad4f5a257001a3457c"></script><script type="text/javascript" src="http://1.85.1.34:8023/js/jquery.js"></script>
+        <script src="http://1.85.1.34:8023/layui/layui.js"></script>
+        <!--[if lte IE 8]>
+        <script>
+        alert('不支持IE8及以下浏览器,建议使用搜狗,360等浏览器,并切换到极速模式!');
+        </script>
+        <![endif]-->
+        <script>
+        if(isIE())
+        {
+            alert('不支持IE浏览器,建议使用火狐，搜狗，360等浏览器,并切换到极速模式!');
+        }
+        function isIE() { //ie?
+         if (!!window.ActiveXObject || "ActiveXObject" in window)
+          return true;
+          else
+          return false;
+         }
+        </script>
+        <link id="layuicss-layer" rel="stylesheet" href="http://1.85.1.34:8023/layui/css/modules/layer/default/layer.css?v=3.1.1" media="all"></head>
+        
+        <body style="" rlt="1">
+        <div class="page">
+        <!--header-->
+            <div class="header">
+                <div class="top">
+                    <div class="logo" style="background: url(/uploads/qylogo/20181109/ca70ddd3358d0c88a5e3f582aef75b8a.jpg) no-repeat;"></div>
+                               <div class="userbox">
+                        <ul class="layui-nav">
+                          <li class="layui-nav-item">
+                            <a href="javascript:;"><img src="http://1.85.1.34:8023/uploads/avatar/default.png" class="layui-nav-img">李勉<span class="layui-nav-more"></span></a>
+                            <dl class="layui-nav-child">
+                              <dd><a href="http://1.85.1.34:8023/index/personal">个人中心</a></dd>
+                              <dd><a href="http://1.85.1.34:8023/index/users/online">我的消息</a></dd>
+                                                    <dd><a href="http://1.85.1.34:8023/index/users/logout">退出登录</a></dd>
+                            </dl>
+                          </li>
+                        <span class="layui-nav-bar"></span></ul>
+                     </div>
+                      
+                     
+                </div>
+                <div class="h_nav">
+                    <ul class="h_n_menu">
+                        <li><a href="http://1.85.1.34:8023/">网站首页</a></li>
+                        <!--
+                        <li><a href="/index/news" >新闻资讯</a>
+                            <ul>
+                              <li><a href="/index/news?lx=1">通知公告</a></li>
+                              <li><a href="/index/news?lx=2">最新新闻</a></li>
+                            </ul>
+                         </li>
+                         -->
+                         <li><a href="http://1.85.1.34:8023/index/cglb/cglball">闯关练兵</a></li>
+                         <li><a href="http://1.85.1.34:8023/index/zxks">在线考试</a></li>
+                         <li><a href="http://1.85.1.34:8023/index/stzj">试题征集</a></li>
+                         <li><a href="http://1.85.1.34:8023/index/knowledge">知识共享</a></li>
+                         <li><a href="http://1.85.1.34:8023javascript:;">创新基地</a>
+                            <ul>
+                              <li><a href="http://1.85.1.34:8023/index/article?lx=8">查找提改献</a></li>
+                              <li><a href="http://1.85.1.34:8023/index/article?lx=9">三小一练</a></li>
+                              <li><a href="http://1.85.1.34:8023javascript:;">技术门诊</a></li>
+                              <li><a href="http://1.85.1.34:8023/index/jsmz/cxgzs?fl=1">劳模创新工作室</a></li>
+                              <li><a href="http://1.85.1.34:8023/index/jsmz/cxgzs?fl=2">技能大师工作室</a></li>
+                            </ul>
+                         </li>
+                         <li><a href="http://1.85.1.34:8023/index/ykt?lx=2">职工讲堂</a></li>
+                        <li><a href="http://1.85.1.34:8023/index/phb">练兵排行</a></li>
+                         <li><a href="http://1.85.1.34:8023/index/news?lx=2">最新新闻</a></li>
+                         
+                        
+                         
+                          <!--<li ><a href="/index/help" >帮助手册</a></li>-->
+                    </ul>
+                </div>
+            </div>
+            <div class="clear"></div>
+        
+        <script type="text/javascript">
+        
+        function funhelp(){
+            layer.open({
+               title: '信息提示'
+              ,content: '功能正在开发中...'
+            });     
+          
+        }
+        
+        
+        </script>
+        
+        
+        <style type="text/css">
+        .sub_cont .sub_cont_left .dt_list .subject label{
+            display: block;
+        }
+        </style>
+            <div class="sub_main">    
+                <div class="sub_banner">
+                    <div class="sub_menu">
+                        <a href="http://1.85.1.34:8023/index">首页 &nbsp; &gt; </a>
+                        <a href="http://1.85.1.34:8023/index/cglb">网上练兵&nbsp; &gt; </a>
+                        <a href="http://1.85.1.34:8023/index/cglb/gk?id=10">轧钢工&nbsp; &gt; </a>
+                        <span>第三关</span> 
+                    </div>        	
+                </div>
+                <div class="clear"></div>
+                <div class="sub_cont">
+                    <div class="sub_cont_left">
+                        <div class="menu_tit_t"><p>答题闯关</p> <div style="float:left;margin-left:50px"><marquee width="500" scrollamount="5" onmouseout="this.start()" onmouseover="this.stop()" style="width: 500px;">该工种第一名：史延峰，积分：703958.15，等级：研究生三年级.&nbsp;连续答对20道题，可以砸金蛋哦~</marquee></div><span id="progress" style="float:right;">1/30</span><div class="ic" style="float:right;margin-left: 0px;"></div></div>
+                        <div class="dt_list">
+                            <div class="subject">
+                                <p id="title">1、滚动轴承内一旦进入异物，就会产生_____和____，也易发生_____或_____。</p>
+                                <form id="option"><label><input type="checkbox" name="answer" value="A"><span>断续的较大振动</span></label><label><input type="checkbox" name="answer" value="B"><span>噪声</span></label><label><input type="checkbox" name="answer" value="C"><span>早期损坏</span></label><label><input type="checkbox" name="answer" value="D"><span>寿命缩短</span></label></form>
+                            </div>
+                            <div class="attribute"><p>试题类型：<span id="q_type">多选题</span></p><p>试题难度：<span id="q_diffic">初级</span></p></div>
+                             <div class="button">
+                                   <button class="layui-btn cg_btn" id="descript">关口说明</button>
+                                   <button class="layui-btn cg_btn" id="next">下一题</button>
+                                   <button class="layui-btn cg_btn" id="out">退出闯关</button>
+                            </div>
+                                            </div>
+                    </div>
+                    <div class="sub_cont_right">
+                          <div class="dt_r">
+                          <div class="dt_box">
+                            <div class="dt_tit">用户信息</div>
+                             <div class="dt_info">
+                                <div class="dt_myimg"><img src="http://1.85.1.34:8023/uploads/avatar/default.png" alt=""></div>
+                                <div class="dt_in_cont">
+                                  <ul>
+                                    <li>工号：W20053</li>
+                                    <li>部门职务：科员</li>
+                                    <li>当前排名：1108</li>
+                                    <li>关口闯关次数：<span class="dt_red">2</span>次</li>
+                                    <li>当前积分：<span class="dt_red">1248.24</span>分</li>
+                                    <li>等级：<span class="dt_red">小学四年级</span></li>
+                                  </ul>
+                                </div>
+                             </div>
+                          </div>
+                          <div class="dt_box2">
+                            <div class="dt_tit">闯关信息</div>
+                             <div class="dt_info">
+                                <div class="dt_in_cont">
+                                  <ul>
+                                    <li>时间限制：无限制</li>
+                                    <li>已用时间：<span id="usedtime">00:00:26</span></li>
+                                    <li>答对题数目：<span id="rightNum" class="dt_red">0</span></li>
+                                    <li>答错题数目：<span id="errorNum" class="dt_green">0</span></li>
+                                    <li>闯关成功积分权重：1.04</li>
+                                    <li>闯关失败积分权重：0.00</li>
+                                  </ul>
+                                </div>
+                             </div>
+                          </div>
+                        </div>
+                    </div>
+                </div>    
+            </div>
+        
+        <!--砸金蛋-->
+        <style type="text/css">
+        .bg-mask {display: block;position: absolute;top: 0;bottom: 0;left: 0;right: 0;position: fixed;background: rgba(0, 0, 0, 0.7);}
+        .egg{width:630px; height:400px; margin:100px auto 20px auto;}
+        .egg ul li{z-index:999;float:none}
+        .eggList{padding:110px 0 0 0;position:relative;width:630px;}
+        .eggList li{list-style-type:none;background:url(/images/egg_1.png) no-repeat 0/100%;width:300px;height:250px;cursor:pointer;position:relative;margin:0 auto;}
+        .eggList li span{position:absolute; width:30px; height:60px; left:68px; top:64px; color:#ff0; font-size:42px; font-weight:bold}
+        .eggList li.curr{background:url(/images/egg_2.png) no-repeat 0/100%;width:350px;height:250px;cursor:default;z-index:300;}
+        .eggList li.curr sup{position:absolute;background:url(/images/img-4.png) no-repeat;width:232px; height:181px;top:-36px;left:-34px;z-index:800;}
+        .hammer{margin: 0 220px; z-index: 10001;background:url(/images/img-6.png) no-repeat;width:74px;height:87px;position:absolute; text-indent:-9999px; z-index: 10001;left:168px;top:100px;}
+        .resultTip{margin: 0 200px;position:absolute; background:#ffc ;padding:6px;z-index:500;top:200px; left:10px; color:#f60; text-align:center;overflow:hidden;display:none;z-index:500;}
+        .resultTip b{font-size:14px;line-height:24px;}
+        .eggList p {
+            color: #cd0000;
+            text-shadow: #ffd800 1px 0 0, #ffd800 0 1px 0, #ffd800 -1px 0 0, #ffd800 0 -1px 0;
+            -webkit-text-shadow: #ffd800 1px 0 0,#ffd800 0 1px 0,#ffd800 -1px 0 0,#ffd800 0 -1px 0;
+            -moz-text-shadow: #ffd800 1px 0 0,#ffd800 0 1px 0,#ffd800 -1px 0 0,#ffd800 0 -1px 0;
+            font-size: 24px;
+            position: absolute;
+            top: 130px;
+            width: 100%;
+            text-align: center;
+            z-index: 99;
+            display:none;
+        }
+        </style>
+        <div id="main" class="bg-mask" style="display:none">
+            <div class="egg">
+                <ul class="eggList">
+                    <!-- <p class="hammer" id="hammer">锤子</p> -->
+                    <p id="result">恭喜您获得<span class="get_thing">XXX</span>一个</p>
+                    <li><span></span></li>
+                </ul>
+            </div>
+        </div>
+        <script type="text/javascript">
+        function eggClick(obj) {
+            var _this = obj;
+            $.getJSON("/index/cglb/hitegg",function(res){
+                        _this.addClass("curr"); //蛋碎效果
+                        $('#result').show();
+                        if(res.code==1){
+                            $(".get_thing").html(res.prize);
+                        }else{
+                            $("#result").html("很遗憾,您没能中奖!");
+                        }
+            });
+        }
+        $(".eggList li").click(function() {
+            if($(this).hasClass("curr")){
+                $('#result').hide();
+                $(".eggList li").removeClass('curr');
+                $('#main').hide();
+                
+                if(isend == true){
+                    resulturl();
+                }
+                
+                canJump = true;
+                return false;
+            }
+            $(this).children("span").hide();
+            eggClick($(this));
+        });
+        </script>
+        <!--砸金蛋-->
+        
+        <script>
+        var right_num = 0;//答对题数目
+        var error_num = 0;//答错题数目
+        var flag = true;
+        var canJump = true; //闯完关后是否可以跳转
+        var q_num = 0;//试题序号
+        var s_num = 0;//连续答对数量
+        var eggnum = 20; //企业砸金蛋要求连续答对题量
+        var leftsecond = 0;
+        var passid = '273';
+        var id = 0;
+        var type_id = 0;
+        var passnum = 30;				//试题总量
+        var minpass = 26;				//过关要求
+        var isend = false;								//是否结束闯关
+        var question;
+        
+        $(function(){
+            getquestion(0);
+        })
+        
+        
+        //已用时间
+        var usedtime = 0;
+        window.setInterval(function(){ShowUseTime(usedtime, 'usedtime');usedtime++;}, 1000);
+        function ShowUseTime(usedtime, divname)
+        {
+            var day1=Math.floor(usedtime/(60*60*24)); 
+            var hour=Math.floor((usedtime-day1*24*60*60)/3600); 
+            var minute=Math.floor((usedtime-day1*24*60*60-hour*3600)/60); 
+            var second=Math.floor(usedtime-day1*24*60*60-hour*3600-minute*60); 
+            if(hour < 10)
+            {
+                hour='0'+hour;
+            }
+            if(minute < 10)
+            {
+                minute='0'+minute;
+            }
+            if(second < 10)
+            {
+                second='0'+second;
+            }
+            var cc = document.getElementById(divname);
+            cc.innerHTML = hour+":"+minute+":"+second;
+        }
+        
+        //倒计时
+        if(leftsecond>0){
+        var timeID = window.setInterval(function(){
+                if(leftsecond<=0)
+                {
+                    window.clearInterval(timeID);
+                    layer.msg('闯关时间结束，正在提交...', {icon: 1}, function(){
+                        if(type_id == 1 || type_id == 3)
+                        {
+                            var answer = $('.subject').find('input[name=answer]:checked').val();
+                        }
+                        
+                        if(type_id == 2)
+                        {
+                            var answer = '';
+                            $('.subject').find('input[name=answer]:checked').each(function(){ 
+                                answer+=$(this).val();
+                            })
+                            //answer = answer.replace('/,*$/g', '');
+                            //alert(answer);
+                        }
+                        
+                        getquestion(answer);
+                    });
+                }
+                leftsecond--;
+            }, 1000);
+        }
+        
+        //弹出一个页面层
+        $('#descript').on('click', function(){
+          layer.open({
+          type: 1,
+          title: '关口说明',
+          area: ['600px', '360px'],
+          shadeClose: true, //点击遮罩关闭
+          content: '<div style="padding:5px;font-size: 18px;">本道关口是：轧钢工&nbsp;&nbsp;风云初动&nbsp;&nbsp;第三关</div><div style="padding:5px;">关口出题数量：30道题</div><div style="padding:5px;">过关要求：必须答对26道题</div><div style="padding:5px;">过关时间：无限制</div><div style="padding:20px;"></div>'
+          });
+        });
+        
+        //问题反馈
+        $('#feedback').on('click', function(){
+          layer.open({  
+            title: '问题反馈',
+            area: ['600px', '400px'],
+            content: '<div style="padding:5px 10px; "><span id="pro_foreword">尊敬的老师&nbsp;管理员：您好，我是李勉，在闯轧钢工— 风云初动 — 第三关，题目为"'+question.title+'"的过程中遇到了以下问题：</span><textarea id="problem" style=" width:520px; height:190px; border:2px solid #f0f0f0;padding: 10px;margin-top: 10px;"  placeholder="请输入遇到的问题"></textarea></div>',
+            btn: ['提交', '取消'],  
+            yes: function(){
+                var pro_foreword = $("#pro_foreword").html();
+                var problem = $("#problem").val();
+                var questionid = id;
+                if(problem == '')
+                {
+                    layer.msg(
+                        '问题不能为空！',
+                        {time: 2000}
+                    );
+                    return;
+                }
+                else
+                {
+                    problem = pro_foreword + problem;
+                    $.ajax({
+                            type: "POST",
+                            dataType: "json",
+                            url: "/index/cglb/callinvig?tkid=10&questionid="+questionid,
+                            data:{problem:problem},
+                            async: false,
+                            success: function(data) {
+                                if(data == 1){
+                                    layer.msg('反馈成功');
+                                }else if(data == 2){
+                                    layer.msg('已经反馈过了');
+                                }
+                            },
+                            error: function(){
+                                layer.msg('反馈失败，请稍后重试');
+                            }
+                        });
+                }
+           },  
+            btn2: function(index, layero) {  
+            },  
+            cancel: function() {  
+             //右上角关闭回调  
+                }  
+            }); 
+        });
+        
+        $('#next').on('click', function(){
+            // if(flag)
+            // {
+            //     flag = false;
+                
+            //     if(type_id == 1 || type_id == 3)
+            //     {
+            //         var answer = $('.subject').find('input[name=answer]:checked').val();
+            //     }
+        
+            //     if(type_id == 2)
+            //     {
+            //         var answer = '';
+            //         $('.subject').find('input[name=answer]:checked').each(function(){ 
+            //             answer+=$(this).val();
+            //         })
+            //     }
+                
+            //     if(answer == undefined || answer == '')
+            //     {
+            //         layer.msg(
+            //             '答案不能为空！',
+            //             {icon: 7,time: 2000}
+            //         );
+            //         flag = true;
+            //         return;
+            //     }
+                
+                getquestion(answer=1);
+                    
+            
+            
+        }); 
+        
+        $('#out').on('click', function(){
+        
+          layer.open({  
+            title: '退出闯关',
+               content: '退出将会返回上一层，是否退出？',  
+                btn: ['退出', '返回'],  
+                yes: function(index, layero) {  
+                    window.location.href='/index/cglb/gk?id=10';  
+                },  
+                btn2: function(index, layero) {  
+        
+                }  
+                ,  
+                cancel: function() {  
+                    //右上角关闭回调  
+        
+                }  
+            }); 
+        
+        });
+        
+        function resulturl(){
+            window.location.href='/index/cglb/passresult?passid='+passid+'&matchid='+0;
+        }
+        
+        // 获取问题地址
+        function getquestion(answer){
+            
+            $.ajax({
+                type:"GET",  
+                dataType:"json",  
+                url:"/index/cglb/ajaxdt?passid="+passid+"&id="+id+"&answer="+answer,
+                success:function (result) {
+                    
+                    if(result.isright == -1)
+                    {
+                        if(result.message == '答题速度太快了')
+                        {
+                            layer.open({  
+                                title: '提示',
+                                content: '答题速度太快了！',  
+                                btn: ['确定']
+                            });
+                            flag = true;
+                            return;
+                        }
+                        else
+                        {
+                            layer.msg(result.message, {icon: 1, time: 3000}, function(){
+                                location.href='index/cglb';
+                            });
+                        }
+                    }
+                    else
+                    {
+                        right_num = result.right_num;
+                        error_num = result.error_num;
+                        s_num = result.series_num;
+                        
+                        if(result.isright == 1)
+                        {
+                            $('#rightNum').text(right_num);
+                            
+                            if(s_num == eggnum)
+                            {
+                                $('#main').show();
+                                canJump = false;
+                            }
+                        }
+                        else if(result.isright == 2){
+                            $('#errorNum').text(error_num);
+                        }
+                        else if(result.isright == 3){
+                            resulturl();
+                        }
+                        
+                        if((right_num + error_num) >= passnum)
+                        {
+                            isend = true;
+                            if(canJump) resulturl();
+                        }
+                        else if(error_num > (passnum - minpass))
+                        {
+                            isend = true;
+                            if(canJump) resulturl();
+                        }
+                    }
+                    
+                    
+                    question = result.question;
+                    q_num = right_num + error_num + 1;
+                    $('.subject #title').html(q_num+'、'+question.title);
+                    
+                    var html='';
+                    if(question.typeid == 1)
+                    {
+                        if (question.a){html += '<label><input type="radio" name="answer" value="A"><span>'+question.a+'</span></label>';}
+                        if (question.b){html += '<label><input type="radio" name="answer" value="B"><span>'+question.b+'</span></label>';}
+                        if (question.c){html += '<label><input type="radio" name="answer" value="C"><span>'+question.c+'</span></label>';}
+                        if (question.d){html += '<label><input type="radio" name="answer" value="D"><span>'+question.d+'</span></label>';}
+                        if (question.e){html += '<label><input type="radio" name="answer" value="E"><span>'+question.e+'</span></label>';}
+                    }
+                    else if(question.typeid == 2)
+                    {
+                        if (question.a){html += '<label><input type="checkbox" name="answer" value="A"><span>'+question.a+'</span></label>';}
+                        if (question.b){html += '<label><input type="checkbox" name="answer" value="B"><span>'+question.b+'</span></label>';}
+                        if (question.c){html += '<label><input type="checkbox" name="answer" value="C"><span>'+question.c+'</span></label>';}
+                        if (question.d){html += '<label><input type="checkbox" name="answer" value="D"><span>'+question.d+'</span></label>';}
+                        if (question.e){html += '<label><input type="checkbox" name="answer" value="E"><span>'+question.e+'</span></label>';}
+                    }
+                    else
+                    {
+                        html += '<label><input type="radio" name="answer" value="对"><span>正确</span></label>';
+                        html += '<label><input type="radio" name="answer" value="错"><span>错误</span></label>';
+                    }
+                    $('.subject #option').html(html);
+                    
+                    $('#q_type').html(question.type);
+                    $('#q_diffic').html(question.difficulty);
+                    $('#progress').html(q_num+'/30');
+                    
+                    id = question.id;
+                    type_id = question.typeid;
+                    flag = true;
+                },
+                error:function(){
+                    layer.msg(
+                        '加载出错，请重试！', 
+                        {icon: 2,time: 2000}
+                    );
+                    flag = true;
+                }  
+            });
+        
+        }
+        
+        </script>
+        
+         <div class="clear"></div>
+            <div class="footer">
+                <div class="link">
+                    <div class="link_bt"><p>友情链接</p></div>
+                    <div class="link_ct">
+                        <ul>
+                         <li><a href="http://1.85.1.34:8023/" target="_blank">陕钢网上练兵平台</a></li>
+                        <li><a href="http://www.bjjxlc.com/" target="_blank">北京嘉信联创科技发展有限公司</a></li>
+                        <li><a href="http://www.shaanxi.gov.cn/" target="_blank">陕西省政府</a></li>
+                        <li><a href="http://www.chinaisa.org.cn/gxportal/login.jsp" target="_blank">中国钢铁工业协会</a></li>
+                        <li><a href="http://www.csteelnews.com/" target="_blank">中国钢铁新闻网</a></li>
+                        <li><a href="http://www.prcsteel.com/" target="_blank">钢为网</a></li>
+                        <li><a href="http://www.shougang.com.cn/shougang_cn_web/" target="_blank">首都钢铁集团</a></li>
+                        <li><a href="http://www.baosteel.com/group/index.htm" target="_blank">宝钢集团</a></li>
+                        <li><a href="http://www.shccig.com/" target="_blank">陕西煤业化工集团</a></li>
+                        <li><a href="http://www.sxlgjt.com/" target="_blank">龙钢集团公司</a></li>
+                        <li><a href="http://www.lm-steel.com/" target="_blank">龙钢公司</a></li>
+                        <li><a href="http://www.hanzhongsteel.cn/" target="_blank">汉钢公司</a></li>
+                      </ul>
+                    </div>
+                    <div class="copyright">
+                        <div class="cpr">
+                            <p>版权所有：北京嘉信联创科技发展有限公司<br>软件证书：软著登字第1252695号<br>发证机关：中华人民共和国国家版权局<br></p>
+                        </div>
+                        <div class="lxww">
+                            <p>公司地址：北京市朝阳区建华南路6号院A座1026室<br>客服经理:15630022988 &nbsp;&nbsp;QQ:3386781861<br></p>
+                        </div>
+                        
+                        <div class="wx">
+                            <p>扫一扫二维码<br>下载手机APP</p>
+                                <div class="ewm"><img src="http://1.85.1.34:8023/images/ewm.png?123" width="102" height="102"></div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+        
+        <script>
+        layui.use(['layer', 'element']);
+        </script>
+        
+        
+        
+        <div id="qds" style="display:none;"></div></body></html>
