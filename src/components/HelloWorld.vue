@@ -56,9 +56,9 @@ export default {
       },
       // 题目正确答案类型
       tiAllInformation:{
-        answer:"B",
-        id:20287,
-        typeid:1, // 题目类型
+        answer:"%E5%AF%B9",
+        id:141227,
+        typeid:3, // 题目类型
       }, // 输出的整个题的所有信息
       tiId:'', // 题目的id
       tiType:'', // 题目类型  1 单选题 2 多选题  3 判断题
@@ -70,6 +70,7 @@ export default {
       tiTempAnswer: '', //临时答案
 
       yiChangError: true,
+      yiChangErrornUM:0,
 
     }
   },
@@ -100,7 +101,7 @@ export default {
            'passid=271&id=20287&answer=D',
            'passid=271&id=20287&answer=A',
          ]
-     
+     //http://1.85.1.34:8023/index/cglb/ajaxdt?passid=291&id=141227&answer=%E5%AF%B9  险种求生
       if(pram1 == 0){   // 开始按钮 
          let b = 0;
          
@@ -154,19 +155,20 @@ export default {
     // 第二次  优化第一次 从后台拿数据  同时从后台拿答案  
 
     getHouTaiData(){ 
-      try {
+      // try {
         let _this = this;
        setTimeout( ()=> {
         
 
-          setTimeout( () => {  // 控制异常
-            if(_this.yiChangError) {
-              _this.getHouTaiData();
-            }
+           setTimeout( () => {  // 控制异常
+             if(_this.yiChangError) {
+               _this.yiChangErrornUM++;
+               _this.getHouTaiData();
+             }
             
-            _this.yiChangError = true; 
-          },5000);
-         axios.get("/cglb/ajaxdt?passid=271"+"&id="+_this.tiAllInformation.id+"&answer="+_this.tiAllInformation.answer).then( (res) => {
+             _this.yiChangError = true; 
+           },5000+_this.yiChangErrornUM*3000);
+         axios.get("/cglb/ajaxdt?passid=291"+"&id="+_this.tiAllInformation.id+"&answer="+_this.tiAllInformation.answer).then( (res) => {
                // 把数据暂时缓存在一个临时变量中
                
               _this.yiChangError =false;  // 控制异常
@@ -194,6 +196,7 @@ export default {
                         _this.tiTempAnswer = _this.danXuanTi;  // 可能的答案放到一个临时数据里面
                         _this.tiAllInformation.answer = _this.tiTempAnswer[_this.tiLength]; // 答案给与一个
                         _this.getHouTaiData(); // 从后台拿数据
+                        console.log("做一个标注1")
                         
                     } else if (_this.tiAllInformation.typeid == 2) {  // 如果是多选题 
                         
@@ -205,12 +208,14 @@ export default {
                          // 可能的答案放到一个临时数据里面
                         _this.tiAllInformation.answer = _this.tiTempAnswer[_this.tiLength];
                         _this.getHouTaiData(); //从后台拿数据
+                        console.log("做一个标注2")
 
                     } else if(_this.tiAllInformation.typeid == 3) { // 如果是判断题
                         
                           _this.tiTempAnswer = _this.panDuanTi ; // 可能的答案放到一个临时数据里面
                           _this.tiAllInformation.answer = _this.tiTempAnswer[_this.tiLength];
                           _this.getHouTaiData();  // 从后台拿数据
+                          console.log("做一个标注3")
 
                     }  
                } else if(res.data.isright == 2) {  // 如果错误的话  接着找答案
@@ -218,41 +223,50 @@ export default {
                  if( _this.tiAllInformation.typeid==1 && _this.tiLength >= 4) {
                       console.log(_this.tiAllInformation);
                       console.log("这个有问题");
-                      _this.tiAllInformation.answer ="B";
-                      _this.tiAllInformation.id = 20287;
-                      _this.tiAllInformation.typeid = 1;
-               
+                      _this.tiAllInformation.answer ="%E5%AF%B9";
+                       _this.tiAllInformation.id = 141227;
+                       _this.tiAllInformation.typeid = 3;
+                       _this.tiTempAnswer = _this.panDuanTi;
+                       _this.tiLength = 0 ;
+                       _this.getHouTaiData();
                       //return
-                    }else if ( _this.tiAllInformation.typeid==2 && _this.tiAllInformation.e == ''&& _this.tiLength > 11 ) {
+                    }else if ( _this.tiAllInformation.typeid==2 && _this.tiAllInformation.e == ''&& _this.tiLength >= 11 ) {
                         console.log(_this.tiAllInformation);
                         console.log("这个有问题");
-                        _this.tiAllInformation.answer ="B";
-                       _this.tiAllInformation.id = 20287;
-                       _this.tiAllInformation.typeid = 1;
-                       _this.tiTempAnswer = _this.danXuanTi;
+                        _this.tiAllInformation.answer ="%E5%AF%B9";
+                       _this.tiAllInformation.id = 141227;
+                       _this.tiAllInformation.typeid = 3;
+                       _this.tiTempAnswer = _this.panDuanTi;
                        _this.tiLength = 0 ;
+                       _this.getHouTaiData();
                         //return
                     }else if (_this.tiAllInformation.typeid==2 && _this.tiAllInformation.e != ''&& _this.tiLength >=26 ) {
                         console.log(_this.tiAllInformation);
                         console.log("这个有问题");
-                        _this.tiAllInformation.answer ="B";
-                        _this.tiAllInformation.id = 20287;
-                       _this.tiAllInformation.typeid = 1;
-                       _this.tiTempAnswer = _this.danXuanTi;
+                        _this.tiAllInformation.answer ="%E5%AF%B9";
+                       _this.tiAllInformation.id = 141227;
+                       _this.tiAllInformation.typeid = 3;
+                       _this.tiTempAnswer = _this.panDuanTi;
                        _this.tiLength = 0 ;
+                       _this.getHouTaiData();
                     }else if (_this.tiAllInformation.typeid==3 && _this.tiLength >= 2) {
                         console.log(_this.tiAllInformation);
                         console.log("这个有问题");
-                        _this.tiAllInformation.answer ="B";
-                        _this.tiAllInformation.id = 20287;
-                       _this.tiAllInformation.typeid = 1;
-                       _this.tiTempAnswer = _this.danXuanTi;
+                       _this.tiAllInformation.answer ="%E5%AF%B9";
+                       _this.tiAllInformation.id = 141227;
+                       _this.tiAllInformation.typeid = 3;
+                       _this.tiTempAnswer = _this.panDuanTi;
                        _this.tiLength = 0 ;
+                       _this.getHouTaiData();
                         //return
-                    }
+                    }else {
                       _this.tiLength ++;
                       _this.tiAllInformation.answer = _this.tiTempAnswer[_this.tiLength];
-                    _this.getHouTaiData();
+                      _this.getHouTaiData();
+                    }
+                      
+                    
+                    console.log("做一个标注0")
 
                } else if (res.data.isright == -1) {  // 如果答题快的话   接着找答案
                   // _this.tiLength = 2; // 设置长度
@@ -262,7 +276,7 @@ export default {
                   //       return
                   //   }
                   // _this.tiAllInformation.answer = _this.tiTempAnswer[_this.tiLength];
-                 _this.getHouTaiData (); 
+                 //_this.getHouTaiData (); 
 
               //  } else if ( ){    // 第一次的话；
 
@@ -274,12 +288,12 @@ export default {
                
          } )
        } ,3000);
-      } catch (error) {
-        _this.tiAllInformation.answer ="B";
-        _this.tiAllInformation.id = 20287;
-        _this.tiAllInformation.typeid = 1;
-        _this.getHouTaiData();
-      }// 从后台拿数据  // 参数正确答案
+     // } catch (error) {
+        // _this.tiAllInformation.answer ="B";
+        // _this.tiAllInformation.id = 20287;
+        // _this.tiAllInformation.typeid = 1;
+        // _this.getHouTaiData();
+      //}// 从后台拿数据  // 参数正确答案
       
     },
 
@@ -332,7 +346,7 @@ export default {
       const filterVal = ['id', 'typeid', 'type', 'answer','title', 'a', 'b', 'c', 'd', 'e']
       const list = res
       const data = this.formatJson(filterVal, list)
-      let  fileName = this.fangXiang[6]+this.leibie[0]+ today+this.downNum
+      let  fileName = this.fangXiang[6]+this.leibie[2]+ today+this.downNum
 
       if(this.a.length>49) {
          fileName = "*" + fileName;
