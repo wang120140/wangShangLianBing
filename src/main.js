@@ -16,14 +16,12 @@ Vue.prototype.$axios = axios
 axios.defaults.withCredentials=true;//让ajax携带cookie
 axios.defaults.baseURL = '/api'  //关键代码
 Vue.config.productionTip = false
-document.cookie = "PHPSESSID=9lhcahm8e1qihmfuse52u0qk42;"
-document.cookie = 'HyGHnOvkdQZ0y=34322;'
-document.cookie = 'safetycode=6293;'
-// "PHPSESSID=9lhcahm8e1qihmfuse52u0qk42"
-//"PHPSESSID=bvb0ldihgnp55ds1jr8lh3skb0; HyGHnOvkdQZ0y=34294; safetycode=6293"
-// "PHPSESSID=bvb0ldihgnp55ds1jr8lh3skb0; HyGHnOvkdQZ0y=34322; safetycode=7118"
-// "PHPSESSID=697o72ue9hg3nj495oit4v2v45; HyGHnOvkdQZ0y=34322; safetycode=2774; Hm_lvt_eaa57ca47dacb4ad4f5a257001a3457c=1573265102,1573279361,1573432222,1573452755; Hm_lpvt_eaa57ca47dacb4ad4f5a257001a3457c=1573452943"
-// "HyGHnOvkdQZ0y=34322; safetycode=5267; PHPSESSID=sdi5r05q7bedt4mmm8l0adqo25"
+document.cookie = "PHPSESSID=a5k7h1idne59vkiif9frprj5l5;"
+document.cookie = 'HyGHnOvkdQZ0y=34326'
+document.cookie = 'safetycode=9024;'
+// "PHPSESSID=jnmocpm5q0vnehu03u2g3h68q3; HyGHnOvkdQZ0y=34322; safetycode=9868; 
+// "PHPSESSID=a5k7h1idne59vkiif9frprj5l5; HyGHnOvkdQZ0y=34326; safetycode=9024; 
+// "PHPSESSID=a5k7h1idne59vkiif9frprj5l5; HyGHnOvkdQZ0y=34322; safetycode=2813; Hm_lvt_eaa57ca47dacb4ad4f5a257001a3457c=1573518798,1573538484,1573540843,1573609361; Hm_lpvt_eaa57ca47dacb4ad4f5a257001a3457c=1573609361"
 
 /* eslint-disable no-new */
 new Vue({
