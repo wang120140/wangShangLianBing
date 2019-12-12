@@ -1,0 +1,301 @@
+<template>
+    <div>
+        <div>自主循环答题</div>
+        <div>循环一幕</div>
+        <span>需要答题分数</span> <input type="text" v-model="needScore"> 
+        <div>
+           已经得到了{{HadScore}}分
+        </div>
+        <button @click="resetBegin">开始答题</button>
+        <button @click="stopDaTi">停止刷题</button> 
+        <button @click="resetBegin">重新开始答题</button>
+        <hr>
+        <div class="containFlex">
+            <div>
+                  <div>第几关--- <span>{{ whichCard}}</span></div>
+                  <div>打了几个----- {{answerNum}} </div>
+                  <div>已经答题的分数----- <span>{{hadScore}}</span> </div>
+            </div>
+            <div>
+                <button>钳工</button>
+                 <button>轧钢工</button>
+            </div>
+            <div>
+                  <div>
+                    <button>第一关</button>
+                    <button>第二关</button>
+                    <button>第三关</button>
+                    <button>第四关</button>
+                    <button>第五关</button>
+                </div>
+                <div>
+                    <button>第六关</button>
+                    <button>第七关</button>
+                    <button>第八关</button>
+                    <button>第九关</button>
+                    <button>第十关</button>
+                </div>
+            </div>
+            
+        </div>
+        
+        <hr>
+        <div>
+            <div v-for="(item,index) in iframeContent" :key="index">
+              <div>{{index}}</div>
+              <br>
+              
+              <span> {{item}}</span>
+              <hr>
+            </div>
+        </div>
+
+        <hr>
+        <hr>
+        <div v-show="showData" v-html="getScore">
+       <!-- {{getScore}} -->
+       </div>
+       
+    </div>
+</template>
+
+<script>
+   import axios from 'axios'  // 获得axios
+   import getCookieValue from './cookie'  // 获得cookie
+   import answer27101 from './PassWord'   // 获得问题答案
+
+
+    export default {
+        data() {
+            return {
+              needScore:2000,
+              hadScore:0,
+              whichCard:0,
+              sendTimeNum:'',
+              answerNum:0, // 回答几个
+              iframe0:'', // 插入ifram0we年
+              iframeContent:[],//内容
+              subqu:1, // 顺序答题顺序
+              yiChangNum:0,// 异常的数量
+              yiChangCtr:false,//异常控制情况
+              getScore:'0',
+              showData:false,
+              HadScore:0 // 已经刷了多少分
+            }
+        },
+        computed: {
+            getTongGuan(){
+                console.log(this)
+                console.log(this.$store)
+                console.log(this.$store.state)
+                let a = this.$store.state.dianGong3
+                return a;
+            },
+            // subqu(){
+            //    return this.$store.state.subqu;
+            // }
+        },
+        methods: {
+            // 重新开始
+            resetBegin(){
+                let _this = this;
+                for(let i =0;i<9999;i++){
+                    clearTimeout(i)
+                }
+                _this.sendRight();
+            },
+            beginAnswer () {
+                // console.log(this.qianGong3);
+                let _this = this;
+               //  _this.whichCard = _this.zhaGangTiZhengFen[9]
+                console.log(_this.getTongGuan);
+                console.log("this,get")
+                console.log(_this.subqu)
+                _this.whichCard = _this.getTongGuan[_this.subqu];
+                // 开始选择那一关
+                _this.whichOne();
+              
+            },
+            //  识别那一关
+            whichOne (){
+                let _this = this;
+                axios.get("/cglb/dt?id="+_this.whichCard+"&matchid=0").then( (res) => {
+                    console.log("------开始选择那一关-----");
+                    console.log(res)
+                    _this.iframeContent.push(res.data);
+                    console.log((_this.iframeContent[0].indexOf("该关口未解锁")))
+                    // 设置自动找合适的关卡
+                    if(_this.iframeContent[0].indexOf("该关口未解锁") != -1) {
+                       _this.subqu++;
+                       if(_this.subqu >= 10) {
+                           _this.subqu =0
+                       }
+                       sessionStorage.setItem("ADCFRTGU789KOJHY7", this.subqu);
+                       _this.$router.go(0);
+                    }
+                    _this.sendFirst(); // 开始发送第一题
+                })
+            },
+            // 发送第一题
+            sendFirst () {
+                let _this = this;
+                axios.get("/cglb/ajaxdt?passid="+_this.whichCard+"&id=0&answer=0").then( (res) => {
+                    console.log(res)
+                    _this.sendRight() // 开始答题
+                })
+            },
+            //发送正确的题目
+            sendRight () {
+                let _this = this;
+                _this.sendTimeNum = setTimeout( () => {
+                // 控制异常的情况
+                    var aNum = setTimeout( () => {
+                        if(_this.yiChangCtr){ // 发生异常情况
+                          // 异常情况计数
+                          console.log("异常触发了。。。。")
+                          _this.yiChangNum ++;
+                          _this.$router.go(0);
+
+                        }
+
+                        _this.yiChangCtr = true;
+                    },5000+_this.yiChangNum*3000);
+                // 控制异常情况结束
+                    let randomNum = Math.floor( Math.random()*160+1);   
+                    document.cookie = getCookieValue.a
+                    document.cookie = getCookieValue.b
+                    document.cookie = getCookieValue.c
+
+                    _this.answerNum++;  // 对答题个数计数
+                   
+                    if(_this.answerNum> 10*(1+Number(_this.subqu) ) ){ // 如果大于10的话
+                       // 消除周期定时器
+                       clearTimeout(_this.sendTimeNum);
+                       clearTimeout(aNum)
+                       // 拿到结果
+                       _this.answerNum = 0 // 答题重新为0
+                       // _this.subqu++;  // 注意顺序
+                       // this.$store.commit("addsubqu"); // 发送改变状态 添加状态
+                       _this.subqu++;
+                       sessionStorage.setItem("ADCFRTGU789KOJHY7", this.subqu);
+                       if(_this.subqu>=10){
+                        // this.$store.commit("reducesubqu"); // 发送改变状态 
+                        sessionStorage.setItem("ADCFRTGU789KOJHY7", 0);  
+                       }
+                       _this.getRightData();
+                       setTimeout( ()=>{
+                          this.$router.go(0);
+                       },3000 )
+                      
+                       // this.$router.push('/auto');
+                       
+                    }else{
+                       axios.get("/cglb/ajaxdt?passid="+_this.whichCard+"&id="+answer27101[randomNum].id+"&answer="+answer27101[randomNum].answer).then( (res) => {
+                        
+                        console.log(res.data)
+                        
+                        if(res.data.isright === -1) { // 控制答题速度过快的情况。
+                            _this.$router.go(0)
+                        }
+
+                        _this.yiChangCtr = false;
+                        document.cookie = getCookieValue.a
+                        document.cookie = getCookieValue.b
+                        document.cookie = getCookieValue.c
+                        if(!_this.yiChangCtr){
+                            _this.sendRight();
+                        }
+                        
+                    } )
+                    }
+                   
+
+                } ,2900)
+              
+            },
+            // 获取正确的数据 
+            getRightData () {
+               let _this = this;
+               axios.get("/cglb/passresult?passid="+_this.whichCard+"mathchid=0").then( (res) => {
+                   console.log("------获取答题结果数据------");
+                   console.log(res);
+                   // let  reg = /(?<=\<ul\>).+(?=\<\\ul\>)/;
+                   // _this.iframe0 = res.data.match(reg);
+                   // _this.iframe0 = res.data;
+                   
+
+                   // _this.beginAnswer(); // 从新开始
+
+               } )
+            },
+            // 停止刷题
+            stopDaTi(){
+                let _this = this;
+                clearTimeout(_this.sendTimeNum);
+            },
+
+            
+        },
+        beforeCreate(){
+             let _this = this;
+            axios.get("/users/trajectory").then( (res) => {
+                _this.showData = false;
+                _this.getScore = res.data;
+            })
+        },
+        mounted() {
+            this.subqu = Number(sessionStorage.getItem("ADCFRTGU789KOJHY7")) ;
+              this.beginAnswer(); // 开始自动答题
+            let _this = this;
+            
+            // 设置分数阀门值
+            axios.get("/users/trajectory").then( (res) => {
+                _this.getScore = res.data;
+            })
+
+             setTimeout( () => {
+                var li0 = document.getElementsByTagName("script");
+                console.log(li0)
+                var li = document.getElementsByTagName("script")[11].text;
+                var echarts={};
+                var option;
+                var myChart = {} ; 
+                myChart.setOption = function(){
+                    console.log(0)
+                }
+                echarts.init = function(){
+                return {setOption:function(pram){
+                    console.log(pram) // 所有的script标签
+                    console.log(pram.series) // 获得多少的分数
+                    _this.HadScore = pram.series[0].data[11]
+                    let a;
+                    a = sessionStorage.getItem("willScore");
+                    if(Number(a) < Number(_this.HadScore)){
+                    _this.$router.push('/')
+                    }
+                }}
+                }
+                
+                
+                eval(li)
+                
+                console.log( typeof(li));
+       
+            } , 3000 )
+            // 设置分数阀门值结束
+            
+        },
+        beforeDestroy() {
+            for(let i=0;i<9999;i++){
+               clearTimeout(i)
+            }
+        },
+    }
+</script>
+
+<style  scoped>
+     .containFlex {
+         display: flex;
+         justify-content: space-around;
+     }
+</style>

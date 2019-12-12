@@ -1,9 +1,25 @@
 <template>
   <div @click="wang" class="hello">
-      网上练兵
+    <router-link to="Auto"> 自主答题 </router-link>
+    <input type="number" placeholder="输入分数" v-model="WillGetScore" @blur="setWillScore">
     <div >{{fangXiang[6]}} {{leibie[1]}} <button @click=" getHouTaiData()">开始</button>  <button @click="wang(0,1)">结束</button></div>
-    <button @click="getData(0)">导出表格</button>   <button @click="daTi()">答题</button> <button  @click="daTiOff()">停止答题</button>
-    <div>已答题{{datiNum}}</div>
+    <button @click="getData(0)">导出表格</button>   <button @click="daTi">答题</button> <button  @click="daTiOff">停止答题</button>
+    <div class="aaa">已答题{{datiNum}}</div>   <button @click="clearnZero">清零</button>
+     <span>答题限制个数</span><button @click="plus10">减10</button><input placeholder="默认是10个" type="text" v-model="datiNumLimit"><button @click="add10">加十</button>
+      
+      <button class="aaa" @click="zuoTi(10)">做10道题</button>
+      <button class="aaa" @click="zuoTi(20)">做20道题</button>
+      <button class="aaa" @click="zuoTi(30)">做30道题</button>
+      <button class="aaa" @click="zuoTi(40)">做40道题</button>
+
+      <button class="aaa" @click="zuoTi(50)">做50道题</button>
+      <button class="aaa" @click="zuoTi(60)">做60道题</button>
+      <button class="aaa" @click="zuoTi(70)">做70道题</button>
+      <button class="aaa" @click="zuoTi(80)">做80道题</button>
+
+      <button class="aaa" @click="zuoTi(90)">做90道题</button>
+      <button class="aaa" @click="zuoTi(100)">做100道题</button>
+
       <el-table :data="a" style="width: 100%" height="550">
       <el-table-column prop="num"   label="第几个" ></el-table-column>
       <el-table-column prop="id"   label="题的编码" id="outTable"   ></el-table-column>
@@ -17,7 +33,9 @@
       <el-table-column prop="d"     label="选项D"> </el-table-column>
       <el-table-column prop="e"     label="选项E"> </el-table-column>
     </el-table>
-    
+     <div v-if="showData" v-html="getScore">
+       <!-- {{getScore}} -->
+     </div>
   </div>
 </template>
 
@@ -30,6 +48,7 @@ import FileSaver from 'file-saver'
 import XLSX from 'xlsx'
 import answer27101 from './PassWord'
 
+import getCookieValue from './cookie'
 
 export default {
   name: 'HelloWorld',
@@ -76,25 +95,108 @@ export default {
       // 答题开关
       datiOffNum:'',
       datiNum:0,
+      datiNumLimit:10,
 
+      // 第一道题
+
+      datiStart0:true,
+      getScore:'0',
+
+      showData: false,
+     // 要刷多少分数
+      WillGetScore:0
     }
   },
   methods: {
-
+    // 设置要刷的分数
+    setWillScore(){
+      sessionStorage.setItem("willScore",this.WillGetScore)
+    },
+    // 
+    zuoTi(pram){
+      this.datiNum = 0;
+      this.datiNumLimit = pram;
+      this.daTi();
+    },
+    // 清零
+    plus10(){
+      this.datiNumLimit = this.datiNumLimit-10;
+    },
+    add10() {
+      this.datiNumLimit= this.datiNumLimit+10;
+    },
+    clearnZero(){
+      this.datiNum = 0 ;
+    },
+    // 答题个数
     // 开始答题
-    daTi(){
+    daTi(){ 
+      
+      // if(this.datiStart0) {
+      //   this.startDaTi()
+      // }
+       console.log(document.cookie);
       this.datiOffNum =setTimeout( () => {
        
       let randomNum = Math.floor( Math.random()*160+1);
-      let _this = this; 
+      let _this = this;
+        // console.log(document.cookie)
+      
+        // document.cookie = "PHPSESSID=a5k7h1idne59vkiif9frprj5l5;"
+        // document.cookie = 'HyGHnOvkdQZ0y=34326;'
+        // document.cookie = 'safetycode=9024;'
+        //"PHPSESSID=ei02nv0gv1dl1st8addeg14902; HyGHnOvkdQZ0y=34322; safetycode=2826"
+document.cookie = getCookieValue.a
+document.cookie = getCookieValue.b
+document.cookie = getCookieValue.c
         axios.get("/cglb/ajaxdt?passid=274"+"&id="+answer27101[randomNum].id+"&answer="+answer27101[randomNum].answer).then( (res) => {
+            _this.datiStart0 = false;
+            // document.cookie = "PHPSESSID=a5k7h1idne59vkiif9frprj5l5;"
+            // document.cookie = 'HyGHnOvkdQZ0y=34326;'
+            // document.cookie = 'safetycode=9024;'
+document.cookie = getCookieValue.a
+document.cookie = getCookieValue.b
+document.cookie = getCookieValue.c
+             console.log(res);
             _this.datiNum++;
-            console.log(res);
-            _this.daTi();
+            if(Number(_this.datiNum)<Number(_this.datiNumLimit)-1) {
+              _this.daTi();
+            }else{
+             
+              this.datiNum = "打完了。。。。。。"
+              // axios.get("/cglb/passresult?passid=301&matchid=0").then( (res2) => {  // 获得成绩
+              //    console.log(res2)
+               
+
+              //   axios.get("/cglb/dt?id=302&matchid=0").then( (res)=> {
+              //         console.log("发送请求答题 ");
+              //         console.log(res)
+              //         axios.get("/cglb/ajaxdt?passid=302&id=0&answer=0").then( (res0)=> {
+              //           console.log(res0)
+              //           console.log("kai shi le... ")
+              //     }  )
+              //   } )
+
+
+              // })
+            }
+            
        })
 
-      } ,3000)
+      } ,2900)
     },
+
+   startDaTi(){
+      axios.get("/cglb/dt?id=301&matchid=0").then( (res)=> {
+        console.log("发送请求答题 ");
+        console.log(res)
+        axios.get("/cglb/ajaxdt?passid=301&id=0&answer=0").then( (res0)=> {
+          console.log(res0)
+          console.log("kai shi le... ")
+     }  )
+      } )
+     
+   },
    // 停止答题
    daTiOff(){
      clearTimeout(this.datiOffNum)
@@ -106,7 +208,7 @@ export default {
         let _this = this;
        setTimeout( ()=> {
         
-
+           
            setTimeout( () => {  // 控制异常
              if(_this.yiChangError) {
                _this.yiChangErrornUM++;
@@ -115,9 +217,10 @@ export default {
             
              _this.yiChangError = true; 
            },5000+_this.yiChangErrornUM*3000);
+           // ajaxdt?passid=361&id=0&answer=0
            // http://1.85.1.34:8023/index/cglb/ajaxdt?passid=281&id=140126&answer=%E5%AF%B9
            //  http://1.85.1.34:8023/index/cglb/ajaxdt?passid=281&id=20287&answer=%E5%AF%B9  // 轧钢厂 争分夺秒  281
-         axios.get("/cglb/ajaxdt?passid=271"+"&id="+_this.tiAllInformation.id+"&answer="+_this.tiAllInformation.answer).then( (res) => {
+         axios.get("/cglb/ajaxdt?passid=361"+"&id="+_this.tiAllInformation.id+"&answer="+_this.tiAllInformation.answer).then( (res) => {
                // 把数据暂时缓存在一个临时变量中
                
               _this.yiChangError =false;  // 控制异常
@@ -356,6 +459,7 @@ export default {
 
                   if(pram == 0){
                     (b >=4)&&(b = 0);
+
                       axios.get("/cglb/ajaxdt?"+shiYan[b]).then((res) => {  // 拿数据
                      
                         if(res.data.question && res.data.question != undefined ) {
@@ -397,11 +501,25 @@ export default {
 
      
   },
+  beforeCreate(){
+     let _this = this;
+    axios.get("/users/trajectory").then( (res) => {
+      _this.showData = true;
+      _this.getScore = res.data;
+    })
+  },
   mounted(){
     // document.cookie = "PHPSESSID=t3i5soiq13ajk94j0erg3t7pk1; HyGHnOvkdQZ0y=34322; safetycode=7392; Hm_lvt_eaa57ca47dacb4ad4f5a257001a3457c=1573197209,1573265102,1573279361; Hm_lpvt_eaa57ca47dacb4ad4f5a257001a3457c=1573286237"
     console.log(document.cookie)
     console.log(answer27101)
+    if(!sessionStorage.getItem("ADCFRTGU789KOJHY7")){
+      sessionStorage.setItem("ADCFRTGU789KOJHY7",0)
+    }
+   
+    
+  
   }
+
 }
 </script>
 
@@ -420,5 +538,11 @@ li {
 }
 a {
   color: #42b983;
+}
+.aaa{
+  font-size: 50px;
+}
+input {
+  font-size: 50px;
 }
 </style>

@@ -93,7 +93,7 @@ let answer27101 = [
         answer:"A"
     },{
         xuhao:139227,
-        id:1,
+        id:139227,
         answer:"A"
     },{
         xuhao:24,
