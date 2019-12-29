@@ -1,26 +1,26 @@
 <template>
     <div>
-        <div>自主循环答题</div>
-        <div>循环一幕</div>
-        <span>需要答题分数</span> <input type="text" v-model="needScore"> 
+        <!-- <div>自主循环答题</div>
+        <div>循环一幕</div> -->
+        <!-- <span>需要答题分数</span> <input type="text" v-model="needScore">  -->
         <div>
-           已经得到了{{HadScore}}分
+           ---{{HadScore}}
         </div>
-        <button @click="resetBegin">开始答题</button>
+        <!-- <button @click="resetBegin">开始答题</button>
         <button @click="stopDaTi">停止刷题</button> 
-        <button @click="resetBegin">重新开始答题</button>
+        <button @click="resetBegin">重新开始答题</button> -->
         <hr>
         <div class="containFlex">
             <div>
-                  <div>第几关--- <span>{{ whichCard}}</span></div>
-                  <div>打了几个----- {{answerNum}} </div>
-                  <div>已经答题的分数----- <span>{{hadScore}}</span> </div>
+                  <div>--- <span>{{ whichCard}}</span></div>
+                  <div>----- {{answerNum}} </div>
+                  <div>----- <span>{{hadScore}}</span> </div>
             </div>
-            <div>
+            <!-- <div>
                 <button>钳工</button>
                  <button>轧钢工</button>
-            </div>
-            <div>
+            </div> -->
+            <!-- <div>
                   <div>
                     <button>第一关</button>
                     <button>第二关</button>
@@ -35,7 +35,7 @@
                     <button>第九关</button>
                     <button>第十关</button>
                 </div>
-            </div>
+            </div> -->
             
         </div>
         
@@ -150,16 +150,16 @@
                 _this.sendTimeNum = setTimeout( () => {
                 // 控制异常的情况
                     var aNum = setTimeout( () => {
-                        if(_this.yiChangCtr){ // 发生异常情况
+                       // if(_this.yiChangCtr){ // 发生异常情况
                           // 异常情况计数
                           console.log("异常触发了。。。。")
                           _this.yiChangNum ++;
                           _this.$router.go(0);
 
-                        }
+                       // }
 
                         _this.yiChangCtr = true;
-                    },5000+_this.yiChangNum*3000);
+                    },15000+_this.yiChangNum*3000);
                 // 控制异常情况结束
                     let randomNum = Math.floor( Math.random()*160+1);   
                     document.cookie = getCookieValue.a
@@ -167,9 +167,12 @@
                     document.cookie = getCookieValue.c
 
                     _this.answerNum++;  // 对答题个数计数
-                   
-                    if(_this.answerNum> 10*(1+Number(_this.subqu) ) ){ // 如果大于10的话
+               
+                   if(_this.answerNum> 10*(1+Number(_this.subqu) ) ){ // 如果大于10的话
                        // 消除周期定时器
+                       for(let i=0;i<9999;i++){
+                              clearTimeout(i)
+                           }
                        clearTimeout(_this.sendTimeNum);
                        clearTimeout(aNum)
                        // 拿到结果
@@ -183,16 +186,28 @@
                         sessionStorage.setItem("ADCFRTGU789KOJHY7", 0);  
                        }
                        _this.getRightData();
+                   
+                       
                        setTimeout( ()=>{
                           this.$router.go(0);
-                       },3000 )
+                       },1200 )
                       
                        // this.$router.push('/auto');
                        
-                    }else{
+                     }else{
+                        // if(_this.answerNum == 10*(1+Number(_this.subqu) ) ) {
+                        //     console.log("执行这个多一个")
+                        //     axios.get("/cglb/ajaxdt?passid="+_this.whichCard+"&id="+answer27101[randomNum].id+"&answer="+answer27101[randomNum].answer).then( () => {
+                        //         _this.getRightData()
+                        //     } )
+                        // }
                        axios.get("/cglb/ajaxdt?passid="+_this.whichCard+"&id="+answer27101[randomNum].id+"&answer="+answer27101[randomNum].answer).then( (res) => {
                         
                         console.log(res.data)
+                           
+                           for(let i=0;i<9999;i++){
+                              clearTimeout(i)
+                           }
                         
                         if(res.data.isright === -1) { // 控制答题速度过快的情况。
                             _this.$router.go(0)
@@ -206,11 +221,13 @@
                             _this.sendRight();
                         }
                         
-                    } )
-                    }
+                     } )
+                     }
+                
+                   
                    
 
-                } ,2900)
+                } ,1850)
               
             },
             // 获取正确的数据 
@@ -254,36 +271,58 @@
             })
 
              setTimeout( () => {
-                var li0 = document.getElementsByTagName("script");
-                console.log(li0)
-                var li = document.getElementsByTagName("script")[11].text;
-                var echarts={};
-                var option;
-                var myChart = {} ; 
-                myChart.setOption = function(){
-                    console.log(0)
-                }
-                echarts.init = function(){
-                return {setOption:function(pram){
-                    console.log(pram) // 所有的script标签
-                    console.log(pram.series) // 获得多少的分数
-                    _this.HadScore = pram.series[0].data[11]
-                    let a;
-                    a = sessionStorage.getItem("willScore");
-                    if(Number(a) < Number(_this.HadScore)){
-                    _this.$router.push('/')
+                 console.log("执行了这句....")
+                 try {
+                     var li0 = document.getElementsByTagName("script");
+                  
+                    console.log(li0)
+                    console.log(111111)
+                    var li = document.getElementsByTagName("script")[11].text;
+                    if(li == ""){
+                         li = document.getElementsByTagName("script")[12].text;
                     }
-                }}
-                }
+                    var echarts={};
+                    var option;
+                    var myChart = {} ; 
+                    myChart.setOption = function(){
+                        console.log(0)
+                    }
+                    echarts.init = function(){
+                    return {setOption:function(pram){
+                        console.log(pram) // 所有的script标签
+                        console.log(pram.series) // 获得多少的分数
+                        _this.HadScore = pram.series[0].data[11]
+                        let a;
+                        a = sessionStorage.getItem("willScore");
+                        if(Number(a) < Number(_this.HadScore)){
+                        _this.$router.push('/')
+                        }
+                    }}
+                    }
+                    
+                    if(li == undefined) {
+                      _this.HadScore = "2222"
+                    }else{
+                        eval(li)
+                    }
+                    eval(li)
+                } catch (error) {
+                      console.log(error)
+                      console.log("错误的信息....")
+                 }
                 
-                
-                eval(li)
                 
                 console.log( typeof(li));
        
-            } , 3000 )
+            } , 500 )
             // 设置分数阀门值结束
             
+        },
+        beforeUpdate(){
+            console.log("数据更新之前")
+        },
+        updated(){
+            console.log("数据更新完成....")
         },
         beforeDestroy() {
             for(let i=0;i<9999;i++){

@@ -1,7 +1,7 @@
 <template>
   <div @click="wang" class="hello">
     <router-link to="Auto"> 自主答题 </router-link>
-    <input type="number" placeholder="输入分数" v-model="WillGetScore" @blur="setWillScore">
+    <input type="number" placeholder="yyyy--mm-dd" v-model="WillGetScore" @blur="setWillScore">
     <div >{{fangXiang[6]}} {{leibie[1]}} <button @click=" getHouTaiData()">开始</button>  <button @click="wang(0,1)">结束</button></div>
     <button @click="getData(0)">导出表格</button>   <button @click="daTi">答题</button> <button  @click="daTiOff">停止答题</button>
     <div class="aaa">已答题{{datiNum}}</div>   <button @click="clearnZero">清零</button>
