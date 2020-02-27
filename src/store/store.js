@@ -22,12 +22,20 @@ const state = {
   anQuan3:[561,562,563,564,565,566,567,568,569,570], //安全
   anQuan2:[],
   subqu:1,
+  userName:'',
+  userNum: '',
 }
 
 const getters = {
 
 }
 const mutations = {
+  SER_USER_NAME (state,parm) {
+    state.userName = parm ;
+  },
+  SET_USER_NUM (state ,parm ) {
+    state.userNum = parm
+  },
   add(state) {
     state.count += 1;
   },

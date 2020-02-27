@@ -40,7 +40,7 @@
         </div>
         
         <hr>
-        <div>
+        <!-- <div>
             <div v-for="(item,index) in iframeContent" :key="index">
               <div>{{index}}</div>
               <br>
@@ -48,14 +48,18 @@
               <span> {{item}}</span>
               <hr>
             </div>
-        </div>
+        </div> -->
 
-        <hr>
-        <hr>
-        <div v-show="showData" v-html="getScore">
-       <!-- {{getScore}} -->
-       </div>
+        
+        <!-- <div v-show="showData" v-html="getScore">
        
+       </div> -->
+       <div>
+          {{UserName}}
+       </div>
+       <div>
+          {{UserNum}}
+       </div>
     </div>
 </template>
 
@@ -80,7 +84,10 @@
               yiChangCtr:false,//异常控制情况
               getScore:'0',
               showData:false,
-              HadScore:0 // 已经刷了多少分
+              HadScore:0, // 已经刷了多少分
+              ctr500:false,
+              UserName:'',
+              UserNum : '',
             }
         },
         computed: {
@@ -159,7 +166,7 @@
                        // }
 
                         _this.yiChangCtr = true;
-                    },15000+_this.yiChangNum*3000);
+                    },20000+_this.yiChangNum*3000);
                 // 控制异常情况结束
                     let randomNum = Math.floor( Math.random()*160+1);   
                     document.cookie = getCookieValue.a
@@ -261,6 +268,9 @@
             })
         },
         mounted() {
+            this.UserName = this.$store.state.userName;
+            
+            this.UserNum  = this.$store.state.userNum;
             this.subqu = Number(sessionStorage.getItem("ADCFRTGU789KOJHY7")) ;
               this.beginAnswer(); // 开始自动答题
             let _this = this;
@@ -291,7 +301,7 @@
                     return {setOption:function(pram){
                         console.log(pram) // 所有的script标签
                         console.log(pram.series) // 获得多少的分数
-                        _this.HadScore = pram.series[0].data[11]
+                        _this.HadScore = pram.series[0].data[1]
                         let a;
                         a = sessionStorage.getItem("willScore");
                         if(Number(a) < Number(_this.HadScore)){
@@ -316,6 +326,10 @@
        
             } , 500 )
             // 设置分数阀门值结束
+
+            setTimeout ( ()=> {
+                this.$router.go(0)
+            },25000 )
             
         },
         beforeUpdate(){

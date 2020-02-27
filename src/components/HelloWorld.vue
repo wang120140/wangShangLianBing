@@ -1,13 +1,14 @@
 <template>
   <div @click="wang" class="hello">
-    <router-link to="Auto"> 自主答题 </router-link>
+    <router-link to="Auto" tag="div"> 自主答题 </router-link>
     <input type="number" placeholder="yyyy--mm-dd" v-model="WillGetScore" @blur="setWillScore">
-    <div >{{fangXiang[6]}} {{leibie[1]}} <button @click=" getHouTaiData()">开始</button>  <button @click="wang(0,1)">结束</button></div>
+     <div> {{UserName}} </div>
+    <!-- <div >{{fangXiang[6]}} {{leibie[1]}} <button @click=" getHouTaiData()">开始</button>  <button @click="wang(0,1)">结束</button></div>
     <button @click="getData(0)">导出表格</button>   <button @click="daTi">答题</button> <button  @click="daTiOff">停止答题</button>
     <div class="aaa">已答题{{datiNum}}</div>   <button @click="clearnZero">清零</button>
      <span>答题限制个数</span><button @click="plus10">减10</button><input placeholder="默认是10个" type="text" v-model="datiNumLimit"><button @click="add10">加十</button>
-      
-      <button class="aaa" @click="zuoTi(10)">做10道题</button>
+       -->
+      <!-- <button class="aaa" @click="zuoTi(10)">做10道题</button>
       <button class="aaa" @click="zuoTi(20)">做20道题</button>
       <button class="aaa" @click="zuoTi(30)">做30道题</button>
       <button class="aaa" @click="zuoTi(40)">做40道题</button>
@@ -18,9 +19,9 @@
       <button class="aaa" @click="zuoTi(80)">做80道题</button>
 
       <button class="aaa" @click="zuoTi(90)">做90道题</button>
-      <button class="aaa" @click="zuoTi(100)">做100道题</button>
+      <button class="aaa" @click="zuoTi(100)">做100道题</button> -->
 
-      <el-table :data="a" style="width: 100%" height="550">
+      <!-- <el-table :data="a" style="width: 100%" height="550">
       <el-table-column prop="num"   label="第几个" ></el-table-column>
       <el-table-column prop="id"   label="题的编码" id="outTable"   ></el-table-column>
       <el-table-column prop="answer"   label="答案" id="outTable"   ></el-table-column>
@@ -31,10 +32,14 @@
       <el-table-column prop="b"     label="选项B"> </el-table-column>
       <el-table-column prop="c"     label="选项C"> </el-table-column>
       <el-table-column prop="d"     label="选项D"> </el-table-column>
-      <el-table-column prop="e"     label="选项E"> </el-table-column>
+      <el-table-column prop="e"     label="选项E"> </el-table-column> -->
     </el-table>
-     <div v-if="showData" v-html="getScore">
+     <div v-show="showData" v-html="getScore">
        <!-- {{getScore}} -->
+       {{UserName}}
+     </div>
+     <div>
+       {{UserNum}}
      </div>
   </div>
 </template>
@@ -104,7 +109,10 @@ export default {
 
       showData: false,
      // 要刷多少分数
-      WillGetScore:0
+      WillGetScore:0 ,
+    //  人的名字 以及 人的工号 
+      UserName : '',
+      UserNum : ' ',
     }
   },
   methods: {
@@ -503,9 +511,21 @@ document.cookie = getCookieValue.c
   },
   beforeCreate(){
      let _this = this;
-    axios.get("/users/trajectory").then( (res) => {
-      _this.showData = true;
+    // axios.get("/users/trajectory").then( (res) => {
+    axios.get("/personal").then( (res) => {
+      _this.showData = false;
       _this.getScore = res.data;
+      _this.$nextTick( () => {
+          // _this.UserName = document.getElementsByClassName("layui-nav-img")[0].parentElement.textContent;
+          console.log(_this.$store)
+          _this.UserName = document.getElementById('gold_box2').getElementsByTagName('li')[0].childNodes[1].textContent
+          console.log(_this.UserName)
+          _this.$store.commit('SER_USER_NAME',_this.UserName)
+          _this.UserNum = document.getElementById('gold_box2').getElementsByTagName('li')[1].childNodes[1].textContent
+          console.log(_this.UserNum);
+          
+          _this.$store.commit('SET_USER_NUM',_this.UserNum)
+      } )
     })
   },
   mounted(){

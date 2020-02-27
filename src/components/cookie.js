@@ -1,8 +1,11 @@
-let getCookie ={} ;
-getCookie.a = "PHPSESSID=n0oh8ithjv98ca6nkc4c36pbj1;"   
-getCookie.b = "BJ83T0U0lFrKq1=20827;"
-getCookie.c = "safetycode1=2389"
+let getCookie ={
+    a:'',
+    b:'',
+    c:''
+} ;
+getCookie.a = "PHPSESSID=lktqs8ip29sginercq6c9cukh0;;"   
+getCookie.b = "BJ83T0U0lFrKq2=27032;"
+getCookie.c = "safetycode2=9165"
 export default getCookie;
-// "PHPSESSID=ssm53st9gcj8sq1npmukvgstg0; BJ83T0U0lFrKq1=20827; safetycode1=3873; 
-// "PHPSESSID=n0oh8ithjv98ca6nkc4c36pbj1; BJ83T0U0lFrKq1=20827; safetycode1=2389; 
-  
+
+// BJ83T0U0lFrKq1=21025; safetycode1=3637; 
