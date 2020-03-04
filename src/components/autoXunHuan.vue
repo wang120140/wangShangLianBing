@@ -150,13 +150,18 @@
             sendRight () {
                 let _this = this;
                 _this.sendTimeNum = setTimeout( () => {
-                // 控制异常的情况
+               // 控制异常的情况
                     var aNum = setTimeout( () => {
                        // if(_this.yiChangCtr){ // 发生异常情况
                           // 异常情况计数
                           
-                          _this.yiChangNum ++;
-                          _this.$router.go(0);
+                        //   _this.yiChangNum ++;
+                        // //  debugger
+                        //   console.log(1)
+                        //   _this.$router.go(0);
+                          _this.answerNum--;
+                          _this.sendRight();
+
 
                        // }
 
@@ -189,8 +194,10 @@
                        }
                        _this.getRightData();
                    
-                       
-                       setTimeout( ()=>{
+                      
+                       setTimeout( ()=>{ 
+                           console.log(2)
+                         //  debugger 
                           this.$router.go(0);
                        },1200 )
                       
@@ -212,6 +219,8 @@
                            }
                         
                         if(res.data.isright === -1) { // 控制答题速度过快的情况。
+                        console.log(3)
+                        // debugger
                             _this.$router.go(0)
                         }
 
@@ -229,7 +238,7 @@
                    
                    
 
-                } ,1850)
+                } ,1900)
               
             },
             // 获取正确的数据 
@@ -325,6 +334,8 @@
             // 设置分数阀门值结束
 
             setTimeout ( ()=> {
+                console.log(4)
+                // debugger
                 this.$router.go(0)
             },25000 )
             
