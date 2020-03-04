@@ -291,7 +291,7 @@
                     return {setOption:function(pram){
                         console.log(pram) // 所有的script标签
                         console.log(pram.series) // 获得多少的分数
-                        _this.HadScore = pram.series[0].data[11]
+                        _this.HadScore = pram.series[0].data[2]
                         let a;
                         a = sessionStorage.getItem("willScore");
                         if(Number(a) < Number(_this.HadScore)){
