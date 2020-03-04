@@ -153,13 +153,13 @@
                        // if(_this.yiChangCtr){ // 发生异常情况
                           // 异常情况计数
                           console.log("异常触发了。。。。")
-                          _this.yiChangNum ++;
-                          _this.$router.go(0);
+                          _this.answerNum--;
+                          _this.sendRight();
 
                        // }
 
                         _this.yiChangCtr = true;
-                    },15000+_this.yiChangNum*3000);
+                    },25000);
                 // 控制异常情况结束
                     let randomNum = Math.floor( Math.random()*160+1);   
                     document.cookie = getCookieValue.a
