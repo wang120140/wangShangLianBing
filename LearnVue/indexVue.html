@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <h2>{{person.name}}-- {{person.age}}</h2>
+        <h3>爱好：{{person.fav}}</h3>
+        <h3>msg提示： {{msg}}</h3>
+        <div v-text="msg"></div>
+        <div v-text="person.name"></div>
+        <div v-html="htmlStr"></div>
+        <input type="text" v-model="msg">
+        <button v-on:click="handleClick">v-on事件</button>
+        <button @click='handleClick'>@click</button>
+    </div>
+    <script src="./WangVue.js"></script>
+    <script>
+        let vm = new WangVue ({
+            el:'#app',
+            data: {
+              person: {
+                name:"王彦辉重新认识前端",
+                age:'25',
+                fav:'喜欢静静地敲代码'
+              },
+              msg:"重新认识前端知识",
+              htmlStr:"<div>重新认识前端知识内容</div>"
+            },
+            methods: {
+                handleClick:function(){
+                    console.log(this)
+                }
+            },
+        })
+    </script>
+</body>
+</html>
