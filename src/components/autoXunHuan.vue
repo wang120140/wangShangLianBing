@@ -152,19 +152,8 @@
                 _this.sendTimeNum = setTimeout( () => {
                // 控制异常的情况
                     var aNum = setTimeout( () => {
-                       // if(_this.yiChangCtr){ // 发生异常情况
-                          // 异常情况计数
-                          
-                        //   _this.yiChangNum ++;
-                        // //  debugger
-                        //   console.log(1)
-                        //   _this.$router.go(0);
                           _this.answerNum--;
                           _this.sendRight();
-
-
-                       // }
-
                         _this.yiChangCtr = true;
                     },20000+_this.yiChangNum*3000);
                 // 控制异常情况结束
@@ -184,8 +173,7 @@
                        clearTimeout(aNum)
                        // 拿到结果
                        _this.answerNum = 0 // 答题重新为0
-                       // _this.subqu++;  // 注意顺序
-                       // this.$store.commit("addsubqu"); // 发送改变状态 添加状态
+                      
                        _this.subqu++;
                        sessionStorage.setItem("ADCFRTGU789KOJHY7", this.subqu);
                        if(_this.subqu>=10){
@@ -198,7 +186,13 @@
                        setTimeout( ()=>{ 
                            console.log(2)
                          //  debugger 
-                          this.$router.go(0);
+                        //  this.$router.push({
+                        //      path:'/',
+                        //      query: {
+                        //         acc:1
+                        //      }
+                        //  })
+                           this.$router.go(0);
                        },1200 )
                       
                        // this.$router.push('/auto');
@@ -307,7 +301,7 @@
                         console.log("....")
                         console.log(pram) // 所有的script标签
                         console.log(pram.series) // 获得多少的分数
-                        _this.HadScore = pram.series[0].data[2]
+                        _this.HadScore = pram.series[0].data[4]
                         let a;
                         a = sessionStorage.getItem("willScore");
                         if(Number(a) < Number(_this.HadScore)){
@@ -357,6 +351,17 @@
 <style  scoped>
      .containFlex {
          display: flex;
-         justify-content: space-around;
+         justify-content: space-around;  
+     }
+     .clearFloat:after {
+       content: " ";
+       clear: both;
+       height: 0;
+       display: block;
+     }
+     .centerF {
+         display: flex;
+         justify-content: center;
+         align-items: center;
      }
 </style>

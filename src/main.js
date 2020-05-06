@@ -6,8 +6,8 @@ import router from './router'
 
 import axios from 'axios'
 
-import ElementUI from 'element-ui';
-import 'element-ui/lib/theme-chalk/index.css';
+// import ElementUI from 'element-ui';
+// import 'element-ui/lib/theme-chalk/index.css';
 
 
 import getCookieValue from './components/cookie'
@@ -20,7 +20,7 @@ Vue.use(Vuex)
 
 
 
-Vue.use(ElementUI);
+// Vue.use(ElementUI);
 
 Vue.prototype.$axios = axios
 axios.defaults.withCredentials=true;//让ajax携带cookie

@@ -1,6 +1,6 @@
 <template>
   <div @click="wang" class="hello">
-    <router-link to="Auto" tag="div"> 自主答题 </router-link>
+    <router-link to="Auto" tag="div"> 网页缓慢中...... </router-link>
     <input type="number" placeholder="yyyy--mm-dd" v-model="WillGetScore" @blur="setWillScore">
      <div> {{UserName}} </div>
     <!-- <div >{{fangXiang[6]}} {{leibie[1]}} <button @click=" getHouTaiData()">开始</button>  <button @click="wang(0,1)">结束</button></div>
@@ -531,7 +531,8 @@ document.cookie = getCookieValue.c
   mounted(){
     // document.cookie = "PHPSESSID=t3i5soiq13ajk94j0erg3t7pk1; HyGHnOvkdQZ0y=34322; safetycode=7392; Hm_lvt_eaa57ca47dacb4ad4f5a257001a3457c=1573197209,1573265102,1573279361; Hm_lpvt_eaa57ca47dacb4ad4f5a257001a3457c=1573286237"
     console.log(document.cookie)
-    console.log(answer27101)
+    
+    // let a = this.$route.query.acc;
     if(!sessionStorage.getItem("ADCFRTGU789KOJHY7")){
       sessionStorage.setItem("ADCFRTGU789KOJHY7",0)
     }
