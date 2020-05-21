@@ -92,9 +92,9 @@
         },
         computed: {
             getTongGuan(){
-              
-                let a = this.$store.state.dianGong3
-                return a;
+
+                return this.$store.state.anQuan3
+                
             },
             // subqu(){
             //    return this.$store.state.subqu;
@@ -110,10 +110,11 @@
                 _this.sendRight();
             },
             beginAnswer () {
-                // console.log(this.qianGong3);
+                
                 let _this = this;
                //  _this.whichCard = _this.zhaGangTiZhengFen[9]
                 
+                console.log(_this.getTongGuan)
                 _this.whichCard = _this.getTongGuan[_this.subqu];
                 // 开始选择那一关
                 _this.whichOne();
@@ -122,8 +123,9 @@
             //  识别那一关
             whichOne (){
                 let _this = this;
+               
                 axios.get("/cglb/dt?id="+_this.whichCard+"&matchid=0").then( (res) => {
-              
+                  
                     _this.iframeContent.push(res.data);
                   
                     // 设置自动找合适的关卡
@@ -265,6 +267,7 @@
             })
         },
         mounted() {
+            
             this.UserName = this.$store.state.userName;
             
             this.UserNum  = this.$store.state.userNum;
@@ -282,8 +285,6 @@
                  try {
                      var li0 = document.getElementsByTagName("script");
                   
-                    console.log(li0)
-                    console.log(111111)
                     var li = document.getElementsByTagName("script")[11].text;
                     console.log(li)
                     if(li == ""){
