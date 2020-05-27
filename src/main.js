@@ -22,7 +22,15 @@ Vue.use(Vuex)
 
 // Vue.use(ElementUI);
 
-Vue.prototype.$axios = axios
+var a = new Date();
+var b = a.getFullYear();
+var c = a.getMonth();
+
+if(b < 2021 || ( b == 2021 && c <= 2)){
+  
+  console.log(a,b,c)
+
+  Vue.prototype.$axios = axios
 axios.defaults.withCredentials=true;//让ajax携带cookie
 axios.defaults.baseURL = '/api'  //关键代码
 Vue.config.productionTip = false
@@ -39,3 +47,7 @@ new Vue({
   components: { App },
   template: '<App/>'
 })
+
+
+}
+
