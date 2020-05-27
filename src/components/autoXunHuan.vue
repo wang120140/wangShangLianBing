@@ -104,7 +104,12 @@
                        sessionStorage.setItem("ADCFRTGU789KOJHY7", this.subqu);
                        _this.$router.go(0);
                     }
-                    _this.sendFirst(); 
+                    if(_this.iframeContent[0].indexOf("今天的闯关时间已用尽") != -1) {
+                         _this.whichCard = "今天已经打完，明天再来，"
+                    } else {
+                         _this.sendFirst(); 
+                    }
+                    
                 })
             },
             

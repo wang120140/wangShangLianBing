@@ -5,19 +5,10 @@ let getCookie ={
 } ;
 
 getCookie.a = "PHPSESSID=t7e4meo6msqn8b8tfu6sfc0hc1;"   
-getCookie.b = "BJ83T0U0lFrKq1=21305"
-getCookie.c = "safetycode1=9957 "
+getCookie.b = "BJ83T0U0lFrKq1=21028"
+getCookie.c = "safetycode1=2529 "
 export default getCookie;
 
-// BJ83T0U0lFrKq1=21305; safetycode1=9957; 
-// BJ83T0U0lFrKq1=21532; safetycode1=3953
-// BJ83T0U0lFrKq1=21035; safetycode1=2330; 
-// BJ83T0U0lFrKq1=20854; safetycode1=6446
-// BJ83T0U0lFrKq1=20757; safetycode1=9757"
-//  BJ83T0U0lFrKq1=34286; safetycode1=7805
-// BJ83T0U0lFrKq1=21676; safetycode1=7454; 
-//BJ83T0U0lFrKq1=20955; safetycode1=1047
-// BJ83T0U0lFrKq1=34602; safetycode1=5056;
 class myPromise {
     constructor(executer){
       this.status = 'pending';
