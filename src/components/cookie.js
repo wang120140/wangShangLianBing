@@ -1,12 +1,30 @@
-let getCookie ={
+﻿let getCookie ={
     a:'',
     b:'',
     c:''
 } ;
 
-getCookie.a = "PHPSESSID=t7e4meo6msqn8b8tfu6sfc0hc1;"   
-getCookie.b = "BJ83T0U0lFrKq1=21028"
-getCookie.c = "safetycode1=2529 "
+ getCookie.a = "PHPSESSID=rebp4dh5bv4tlrmlrpm0596f12;"   
+ getCookie.b = "BJ83T0U0lFrKq1=34300;"
+ getCookie.c = "safetycode1=1991;"
+// BJ83T0U0lFrKq1=34300; safetycode1=1991"
+// "PHPSESSID=719fuli4tfddpg6he84i27fv96; BJ83T0U0lFrKq1=20872; safetycode1=9808"
+// "PHPSESSID=rebp4dh5bv4tlrmlrpm0596f12; BJ83T0U0lFrKq1=33943; safetycode1=6252"
+// "PHPSESSID=o7b27q2675qik8oiat007ishs0; BJ83T0U0lFrKq1=33957; safetycode1=3710"
+// BJ83T0U0lFrKq1=33967; safetycode1=4321
+// "PHPSESSID=3vhef9ftnkc3913rhkdg7pkqv7; BJ83T0U0lFrKq1=34300; safetycode1=5214"
+// "PHPSESSID=3vhef9ftnkc3913rhkdg7pkqv7; BJ83T0U0lFrKq1=20653; safetycode1=5342"
+// "PHPSESSID=m094hms6o7ej4c4niijdb71ep1; BJ83T0U0lFrKq1=21030; safetycode1=6170"
+//  BJ83T0U0lFrKq1=22753; safetycode1=5834"
+// "PHPSESSID=m094hms6o7ej4c4niijdb71ep1; BJ83T0U0lFrKq1=21180; safetycode1=6216"
+// "PHPSESSID=rknlfsi2bgijd731ki06pi24f6; BJ83T0U0lFrKq1=20864; safetycode1=8599"
+//  "PHPSESSID=rknlfsi2bgijd731ki06pi24f6; BJ83T0U0lFrKq1=34300; safetycode1=8732"
+// "PHPSESSID=rknlfsi2bgijd731ki06pi24f6; BJ83T0U0lFrKq1=21524; safetycode1=9820"
+// "PHPSESSID=sursjav23egn6jb4e83miar5o6; BJ83T0U0lFrKq1=20856; safetycode1=9459"
+// "PHPSESSID=sursjav23egn6jb4e83miar5o6; BJ83T0U0lFrKq1=20632; safetycode1=2382"
+// "PHPSESSID=cbbnpgl0l7cbi6em915f0fqfa3; BJ83T0U0lFrKq1=21233; safetycode1=5690"
+
+
 export default getCookie;
 
 class myPromise {

@@ -1,4 +1,4 @@
-// The Vue build version to load with the `import` command
+﻿// The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
 import App from './App'
@@ -26,7 +26,7 @@ var a = new Date();
 var b = a.getFullYear();
 var c = a.getMonth();
 
-if(b < 2021 || ( b == 2021 && c <= 2)){
+if(  b == 2020 && c <= 5){
   
   console.log(a,b,c)
 

@@ -1,4 +1,4 @@
-<template>
+﻿<template>
     <div>
       
         <div>
@@ -57,12 +57,13 @@
               ctr500:false,
               UserName:'',
               UserNum : '',
+              cuoWu:0,
             }
         },
         computed: {
             getTongGuan(){
 
-                return this.$store.state.anQuan3
+                return this.$store.state.qianGong2
                 
             },
         
@@ -81,7 +82,6 @@
                 let _this = this;
                //  _this.whichCard = _this.zhaGangTiZhengFen[9]
                 
-                console.log(_this.getTongGuan)
                 _this.whichCard = _this.getTongGuan[_this.subqu];
                 
                 _this.whichOne();
@@ -122,6 +122,7 @@
             },
             
             sendRight () {
+                // debugger
                 let _this = this;
                 _this.sendTimeNum = setTimeout( () => {
                
@@ -172,19 +173,16 @@
                        // this.$router.push('/auto');
                        
                      }else{
-                    
-                       axios.get("/cglb/ajaxdt?passid="+_this.whichCard+"&id="+answer27101[randomNum].id+"&answer="+answer27101[randomNum].answer).then( (res) => {
-                        
-                       
-                           
+                      if(  _this.answerNum == _this.cuoWu||_this.answerNum == _this.cuoWu ) {
+                          //debugger
+                        axios.get("/cglb/ajaxdt?passid="+_this.whichCard+"&id=20288&answer=D").then( (res) => {     
                            for(let i=0;i<9999;i++){
                               clearTimeout(i)
                            }
-                        
                         if(res.data.isright === -1) { // 控制答题速度过快的情况。
-                        console.log(3)
                         // debugger
-                            _this.$router.go(0)
+                            _this.answerNum--;
+                          _this.sendRight();
                         }
 
                         _this.yiChangCtr = false;
@@ -196,12 +194,32 @@
                         }
                         
                      } )
-                     }
-                
-                   
-                   
+                      } else{
+                          axios.get("/cglb/ajaxdt?passid="+_this.whichCard+"&id="+answer27101[randomNum].id+"&answer="+answer27101[randomNum].answer).then( (res) => {     
+                           for(let i=0;i<9999;i++){
+                              clearTimeout(i)
+                           }
+                        if(res.data.isright === -1) { // 控制答题速度过快的情况。
+                        // debugger
+                            _this.answerNum--;
+                          _this.sendRight();
+                        }
 
-                } ,1900)
+                        _this.yiChangCtr = false;
+                        document.cookie = getCookieValue.a
+                        document.cookie = getCookieValue.b
+                        document.cookie = getCookieValue.c
+                        if(!_this.yiChangCtr){
+                            _this.sendRight();
+                        }
+                        
+                     } )
+                      }
+                      
+                     }
+                                  
+
+                } ,1900+(Math.random()*500))
               
             },
         
@@ -233,6 +251,10 @@
             
             this.UserNum  = this.$store.state.userNum;
             this.subqu = Number(sessionStorage.getItem("ADCFRTGU789KOJHY7")) ;
+            console.log(this.subqu)
+            this.cuoWu = Math.ceil(((this.subqu+1)*10)*Math.random()) 
+            console.log(this.cuoWu+'cuo eu ');
+            
             ( (new Date().getTime()) < (new Date("2020-6-30").getTime() ) ) &&
               this.beginAnswer(); 
             let _this = this;
@@ -263,7 +285,7 @@
                     return {setOption:function(pram){
                         console.log("....")
                       
-                        _this.HadScore = pram.series[0].data[4]
+                        _this.HadScore = pram.series[0].data[5]
                         let a;
                         a = sessionStorage.getItem("willScore");
                         if(Number(a) < Number(_this.HadScore)){

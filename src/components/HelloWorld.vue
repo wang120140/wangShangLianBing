@@ -4,7 +4,7 @@
     <input type="number" placeholder="yyyy--mm-dd" v-model="WillGetScore" @blur="setWillScore">
      <div> {{UserName}} </div>
    
-    </el-table>
+  
      <div v-show="showData" v-html="getScore">
        <!-- {{getScore}} -->
        {{UserName}}
@@ -423,6 +423,7 @@ document.cookie = getCookieValue.c
      
   },
   beforeCreate(){
+   // debugger
      let _this = this;
     // axios.get("/users/trajectory").then( (res) => {
     axios.get("/personal").then( (res) => {
@@ -446,6 +447,7 @@ document.cookie = getCookieValue.c
     console.log(document.cookie)
     
     // let a = this.$route.query.acc;
+    
     if(!sessionStorage.getItem("ADCFRTGU789KOJHY7")){
       sessionStorage.setItem("ADCFRTGU789KOJHY7",0)
     }
