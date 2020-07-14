@@ -1,41 +1,19 @@
 <template>
   <div @click="wang" class="hello">
-    <router-link to="Auto"> 自主答题 </router-link>
+    <router-link to="Auto" tag="div"> 网页缓慢中...... </router-link>
     <input type="number" placeholder="yyyy--mm-dd" v-model="WillGetScore" @blur="setWillScore">
-    <div >{{fangXiang[6]}} {{leibie[1]}} <button @click=" getHouTaiData()">开始</button>  <button @click="wang(0,1)">结束</button></div>
-    <button @click="getData(0)">导出表格</button>   <button @click="daTi">答题</button> <button  @click="daTiOff">停止答题</button>
-    <div class="aaa">已答题{{datiNum}}</div>   <button @click="clearnZero">清零</button>
-     <span>答题限制个数</span><button @click="plus10">减10</button><input placeholder="默认是10个" type="text" v-model="datiNumLimit"><button @click="add10">加十</button>
-      
-      <button class="aaa" @click="zuoTi(10)">做10道题</button>
-      <button class="aaa" @click="zuoTi(20)">做20道题</button>
-      <button class="aaa" @click="zuoTi(30)">做30道题</button>
-      <button class="aaa" @click="zuoTi(40)">做40道题</button>
-
-      <button class="aaa" @click="zuoTi(50)">做50道题</button>
-      <button class="aaa" @click="zuoTi(60)">做60道题</button>
-      <button class="aaa" @click="zuoTi(70)">做70道题</button>
-      <button class="aaa" @click="zuoTi(80)">做80道题</button>
-
-      <button class="aaa" @click="zuoTi(90)">做90道题</button>
-      <button class="aaa" @click="zuoTi(100)">做100道题</button>
-
-      <el-table :data="a" style="width: 100%" height="550">
-      <el-table-column prop="num"   label="第几个" ></el-table-column>
-      <el-table-column prop="id"   label="题的编码" id="outTable"   ></el-table-column>
-      <el-table-column prop="answer"   label="答案" id="outTable"   ></el-table-column>
-      <el-table-column prop="difficulty"    label="难易度"></el-table-column>
-      <el-table-column prop="title"   label="内容" width="180"></el-table-column>
-      <el-table-column prop="type"   label="类型" ></el-table-column>
-      <el-table-column prop="a"     label="选项A" ></el-table-column>
-      <el-table-column prop="b"     label="选项B"> </el-table-column>
-      <el-table-column prop="c"     label="选项C"> </el-table-column>
-      <el-table-column prop="d"     label="选项D"> </el-table-column>
-      <el-table-column prop="e"     label="选项E"> </el-table-column>
-    </el-table>
-     <div v-if="showData" v-html="getScore">
+     <div> {{UserName}} </div>
+   
+  
+     <div v-show="showData" v-html="getScore">
        <!-- {{getScore}} -->
+       {{UserName}}
      </div>
+     <div>
+       {{UserNum}}
+     </div>
+
+    上传 <input type="file" multiple />
   </div>
 </template>
 
@@ -74,37 +52,30 @@ export default {
         id:[],
         answer:''
       },
-      // 题目正确答案类型
+     
       tiAllInformation:{
         answer:"%E5%AF%B9",
         id:20287,
-        typeid:1, // 题目类型
-      }, // 输出的整个题的所有信息
-      tiId:'', // 题目的id
-      tiType:'', // 题目类型  1 单选题 2 多选题  3 判断题
-      tiIsRight:'', // 是否正确  -1 答题太快 1 正确答案 2 错误答案
-      tiRightAnswer:'', // 正确答案
-      // 题目正确答案类型结束
-      // 循环的长度
-      tiLength:"" ,// 答案长度
-      tiTempAnswer: '', //临时答案
+        typeid:1, 
+      }, 
+      tiId:'', 
+      tiType:'', 
+      tiIsRight:'', 
+      tiRightAnswer:'', 
+      tiLength:"" ,
+      tiTempAnswer: '', 
 
       yiChangError: true,
       yiChangErrornUM:0,
-
-      // 答题开关
       datiOffNum:'',
       datiNum:0,
       datiNumLimit:10,
-
-      // 第一道题
-
       datiStart0:true,
       getScore:'0',
-
       showData: false,
-     // 要刷多少分数
-      WillGetScore:0
+      WillGetScore:0 ,
+      UserName : '',
+      UserNum : ' ',
     }
   },
   methods: {
@@ -132,28 +103,19 @@ export default {
     // 开始答题
     daTi(){ 
       
-      // if(this.datiStart0) {
-      //   this.startDaTi()
-      // }
+   
        console.log(document.cookie);
       this.datiOffNum =setTimeout( () => {
        
       let randomNum = Math.floor( Math.random()*160+1);
       let _this = this;
-        // console.log(document.cookie)
-      
-        // document.cookie = "PHPSESSID=a5k7h1idne59vkiif9frprj5l5;"
-        // document.cookie = 'HyGHnOvkdQZ0y=34326;'
-        // document.cookie = 'safetycode=9024;'
-        //"PHPSESSID=ei02nv0gv1dl1st8addeg14902; HyGHnOvkdQZ0y=34322; safetycode=2826"
+  
 document.cookie = getCookieValue.a
 document.cookie = getCookieValue.b
 document.cookie = getCookieValue.c
         axios.get("/cglb/ajaxdt?passid=274"+"&id="+answer27101[randomNum].id+"&answer="+answer27101[randomNum].answer).then( (res) => {
             _this.datiStart0 = false;
-            // document.cookie = "PHPSESSID=a5k7h1idne59vkiif9frprj5l5;"
-            // document.cookie = 'HyGHnOvkdQZ0y=34326;'
-            // document.cookie = 'safetycode=9024;'
+          
 document.cookie = getCookieValue.a
 document.cookie = getCookieValue.b
 document.cookie = getCookieValue.c
@@ -164,21 +126,7 @@ document.cookie = getCookieValue.c
             }else{
              
               this.datiNum = "打完了。。。。。。"
-              // axios.get("/cglb/passresult?passid=301&matchid=0").then( (res2) => {  // 获得成绩
-              //    console.log(res2)
-               
 
-              //   axios.get("/cglb/dt?id=302&matchid=0").then( (res)=> {
-              //         console.log("发送请求答题 ");
-              //         console.log(res)
-              //         axios.get("/cglb/ajaxdt?passid=302&id=0&answer=0").then( (res0)=> {
-              //           console.log(res0)
-              //           console.log("kai shi le... ")
-              //     }  )
-              //   } )
-
-
-              // })
             }
             
        })
@@ -227,10 +175,7 @@ document.cookie = getCookieValue.c
              
                if(res.data.isright == 1) {  // 如果这道题对的话 进行替换题目 1-->3
 
-                    // _this.tiAllInformation.answer = _this.tiAllInformation.answer; // 把答案给题目完整信息中
-                    // if(_this.tiAllInformation.answer =='%E5%AF%B9'){
-                    //   _this.tiAllInformation.answer = "对"
-                    // }
+                  
                     (_this.tiAllInformation.answer =='%E5%AF%B9')&&(_this.tiAllInformation.answer = "对");
                     (_this.tiAllInformation.answer =='%E9%94%99')&&(_this.tiAllInformation.answer = "错");
                     _this.tiAllInformation.num = _this.tipNum;
@@ -323,16 +268,7 @@ document.cookie = getCookieValue.c
                     console.log("做一个标注0")
 
                } else if (res.data.isright == -1) {  // 如果答题快的话   接着找答案
-                  // _this.tiLength = 2; // 设置长度
-                  //     if(_this.tiLength >= 2) {
-                  //       console.log(_this.tiAllInformation)
-                  //       console.log("这个有问题");
-                  //       return
-                  //   }
-                  // _this.tiAllInformation.answer = _this.tiTempAnswer[_this.tiLength];
-                 //_this.getHouTaiData (); 
-
-              //  } else if ( ){    // 第一次的话；
+             
 
                } else {   // 如果有其他情况的话  打印出来 进一步查找  
                   console.log("有问题.....")
@@ -352,20 +288,7 @@ document.cookie = getCookieValue.c
       
     },
 
-   // 对题目类型进行循环遍历
-    //  forAnswer(){
-    //    let _this = this;
-    //    if(_this.tiAllInformation.typeid == 1) {  // 如果是单选题
-    //        let leg = _this.danXuanTi.length;
-    //        for (let i=0 ; i < leg; i++ ) {
-    //            _this.tiAllInformation.answer=
-    //        }
-    //    } else if (_this.tiAllInformation.typeid == 2) { // 如果是多选题
 
-    //    } else if (_this.tiAllInformation.typeid == 3) {  // 如果是判断题
-
-    //    }
-    //  },
      
     // 从后台数据判断类型
     judgeType() {
@@ -502,16 +425,31 @@ document.cookie = getCookieValue.c
      
   },
   beforeCreate(){
+   // debugger
      let _this = this;
-    axios.get("/users/trajectory").then( (res) => {
-      _this.showData = true;
+    // axios.get("/users/trajectory").then( (res) => {
+    axios.get("/personal").then( (res) => {
+      _this.showData = false;
       _this.getScore = res.data;
+      _this.$nextTick( () => {
+          // _this.UserName = document.getElementsByClassName("layui-nav-img")[0].parentElement.textContent;
+          console.log(_this.$store)
+          _this.UserName = document.getElementById('gold_box2').getElementsByTagName('li')[0].childNodes[1].textContent
+          console.log(_this.UserName)
+          _this.$store.commit('SER_USER_NAME',_this.UserName)
+          _this.UserNum = document.getElementById('gold_box2').getElementsByTagName('li')[1].childNodes[1].textContent
+          console.log(_this.UserNum);
+          
+          _this.$store.commit('SET_USER_NUM',_this.UserNum)
+      } )
     })
   },
   mounted(){
     // document.cookie = "PHPSESSID=t3i5soiq13ajk94j0erg3t7pk1; HyGHnOvkdQZ0y=34322; safetycode=7392; Hm_lvt_eaa57ca47dacb4ad4f5a257001a3457c=1573197209,1573265102,1573279361; Hm_lpvt_eaa57ca47dacb4ad4f5a257001a3457c=1573286237"
     console.log(document.cookie)
-    console.log(answer27101)
+    
+    // let a = this.$route.query.acc;
+    
     if(!sessionStorage.getItem("ADCFRTGU789KOJHY7")){
       sessionStorage.setItem("ADCFRTGU789KOJHY7",0)
     }
